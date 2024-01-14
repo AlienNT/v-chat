@@ -7,8 +7,14 @@ import {colors} from "@/router/colors.js";
 import {computed} from "vue";
 
 const props = defineProps({
-  chatItem: {
-    type: Object
+  title: {
+    type: String
+  },
+  avatar: {
+    type: String
+  },
+  message: {
+    type: String
   },
   isActive: {
     type: Boolean,
@@ -17,7 +23,7 @@ const props = defineProps({
 })
 
 const fontColor = computed(() => {
-  return props.isActive ? colors.COLORS_CONTENT_HIGHT_CONTRAST : null
+  return props.isActive ? colors.COLORS_CONTENT_HIGH_CONTRAST : null
 })
 </script>
 
@@ -27,18 +33,18 @@ const fontColor = computed(() => {
       :class="isActive && 'active'"
   >
     <ChatsAvatar
-        :name="chatItem?.title"
-        :src="chatItem?.avatar"
+        :name="title"
+        :src="avatar"
     />
     <div class="content">
       <ChatsItemMessageHeader
           class="message-header"
-          :title="chatItem?.title"
+          :title="title"
           :color="fontColor"
       />
       <ChatsItemMessageBody
           class="message-body"
-          :message="chatItem?.message"
+          :message="message"
           :color="fontColor"
       />
     </div>

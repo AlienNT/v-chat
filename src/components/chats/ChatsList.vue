@@ -16,6 +16,9 @@ const props = defineProps({
         :key="index"
         :chat-item="chat"
         :is-active="index===2"
+        :avatar="chat?.avatar"
+        :message="chat?.message"
+        :title="chat?.title"
     />
   </ul>
 </template>
