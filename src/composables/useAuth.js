@@ -2,7 +2,7 @@ import {computed, reactive} from "vue";
 
 const state = reactive({
     token:'',
-    isAuth: false,
+    isAuth: true,
 })
 export function useAuth() {
     const token = computed(() =>

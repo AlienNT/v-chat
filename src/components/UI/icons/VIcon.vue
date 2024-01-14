@@ -1,5 +1,6 @@
 <script setup>
 import {computed} from "vue";
+import {colors} from "@/router/colors.js";
 
 const props = defineProps({
   src: {
@@ -8,9 +9,11 @@ const props = defineProps({
   },
   backgroundColor: {
     type: String,
-    default: 'white'
+    default: colors.COLORS_CONTENT_MEDIUM_CONTRAST
   },
 })
+
+defineEmits(['onClick'])
 
 const style = computed(() => {
   return [
@@ -24,13 +27,14 @@ const style = computed(() => {
   <div
       class="icon"
       :style="style"
+      @click="$emit('onClick')"
   />
 </template>
 
 <style scoped lang="scss">
 .icon {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   position: relative;
 
   &:after {

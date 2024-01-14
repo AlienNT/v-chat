@@ -1,10 +1,18 @@
 export default {
     AUTH_PAGE: {
-        path:'/auth',
+        path: '/auth',
         name: 'auth'
     },
-    DIALOGS_PAGE: {
-        path:'/dialogs',
-        name: 'dialogs'
+    CHATS_PAGE: {
+        path: '/chats',
+        name: 'chats'
+    },
+    SETTINGS_PAGE: {
+        path: '/settings',
+        name: 'settings'
+    },
+    PROFILE: {
+        path: '/profile',
+        name: 'profile'
     }
 }

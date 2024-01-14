@@ -45,3 +45,38 @@ export const iconTgPath = {
     WALLET: 'src/assets/icons/tg/wallet.svg',
     X_CIRCLE: 'src/assets/icons/tg/x-circle.svg'
 }
+
+export const iconBadgesPath = {
+    ATTACH: 'src/assets/icons/card/badges/Type=Attach.svg',
+    AUDIO: 'src/assets/icons/card/badges/Type=Audio.svg',
+    BACKWARD: 'src/assets/icons/card/badges/Type=Backward.svg',
+    COUNT: 'src/assets/icons/card/badges/Type=Count.svg',
+    COUNT_MUTED: 'src/assets/icons/card/badges/Type=Count_Mutted.svg',
+    FORWARD: 'src/assets/icons/card/badges/Type=Forward.svg',
+    LOCATION: 'src/assets/icons/card/badges/Type=Location.svg',
+    MENTION: 'src/assets/icons/card/badges/Type=Mention.svg',
+    PAUSE: 'src/assets/icons/card/badges/Type=Pause.svg',
+    PINNED: 'src/assets/icons/card/badges/Type=Pinned.svg',
+    PREV: 'src/assets/icons/card/badges/Type=Prev.svg',
+    REORDER: 'src/assets/icons/card/badges/Type=Reoder.svg',
+    SKIP: 'src/assets/icons/card/badges/Type=Skip.svg',
+    VIDEO_MESSAGE: 'src/assets/icons/card/badges/Type=Video_message.svg',
+    WALLET: 'src/assets/icons/card/badges/Type=Wallet.svg'
+}
+export const badgesType = {
+    ATTACH: 'attach',
+    AUDIO: 'audio',
+    BACKWARD: 'backward',
+    COUNT: 'count',
+    COUNT_MUTED: 'countMuted',
+    FORWARD: 'forward',
+    LOCATION: 'location',
+    MENTION: 'mention',
+    PAUSE: 'pause',
+    PINNED: 'pinned',
+    PREV: 'prev',
+    REORDER: 'reorder',
+    SKIP: 'skip',
+    VIDEO_MESSAGE: 'videoMessage',
+    WALLET: 'wallet'
+}

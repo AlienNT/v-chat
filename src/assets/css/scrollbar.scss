@@ -1,0 +1,15 @@
+@import "colors";
+.scroll {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $COLORS_DOMINANT_BG_MEDIUM_CONTRAST;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $COLORS_CONTENT_MEDIUM_CONTRAST;
+    border-radius: 20px;
+  }
+}

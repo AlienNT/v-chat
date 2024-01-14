@@ -2,6 +2,7 @@
 import ChatsAvatar from "@/components/chats/ChatsAvatar.vue";
 import ChatsItemMessageHeader from "@/components/chats/ChatsItemMessageHeader.vue";
 import ChatsItemMessageBody from "@/components/chats/ChatsItemMessageBody.vue";
+
 import {colors} from "@/router/colors.js";
 import {computed} from "vue";
 
@@ -54,14 +55,14 @@ const fontColor = computed(() => {
   padding: 0.75rem;
   gap: 0.75rem;
   flex-shrink: 0;
-  background: var(--Colors-Dominant-BG-HContrast);
-  border-bottom: 1px solid var(--Colors-Dominant-BG-Medium-Contrast);
+  background: $COLORS_DOMINANT_BG_H_CONTRAST;
+  border-bottom: 1px solid $COLORS_DOMINANT_BG_MEDIUM_CONTRAST;
   cursor: pointer;
 
 }
 
 .active {
-  background: var(--Colors-Dominant-BG-Medium-Contrast);
+  background: $COLORS_DOMINANT_BG_MEDIUM_CONTRAST;
   position: sticky;
   z-index: 1;
   top: 0;
@@ -70,7 +71,7 @@ const fontColor = computed(() => {
   .message-header,
   .message-body {
     > * {
-      color: var(--Colors-Content-Hight-Contrast);
+      color: $COLORS_CONTENT_HIGH_CONTRAST;
     }
   }
 }
