@@ -38,7 +38,11 @@ watch(() => isAuth.value, (value) => {
 </script>
 <template>
   <div class="viewport">
-    <router-view/>
+    <router-view v-slot="{Component}">
+      <keep-alive>
+        <component :is="Component"/>
+      </keep-alive>
+    </router-view>
   </div>
   <NavigationBar/>
 </template>
@@ -50,6 +54,7 @@ watch(() => isAuth.value, (value) => {
   flex-direction: column;
   background: $COLORS_DOMINANT_BG_H_CONTRAST;
 }
+
 .viewport {
   flex: 1;
   display: flex;
