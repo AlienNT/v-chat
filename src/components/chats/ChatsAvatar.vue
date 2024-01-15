@@ -1,6 +1,7 @@
 <script setup>
 import {computed} from "vue";
 import {getInitials} from "@/helpers/index.js";
+import Avatar from "@/components/UI/Avatar.vue";
 
 const props = defineProps({
   src: {
@@ -18,42 +19,15 @@ const initials = computed(() => {
 </script>
 
 <template>
-  <div class="chats-avatar">
-    <img
-        v-if="src"
-        :src="src"
-        class="avatar"
-        alt="avatar"
-    >
-    <div
-        v-else
-        class="initials"
-    >
-      {{ initials }}
-    </div>
-  </div>
+  <Avatar
+      :src="src"
+      :initials="initials"
+      class="chats-avatar"
+  />
 </template>
-
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .chats-avatar {
   width: 3.5rem;
   height: 3.5rem;
-  border-radius: 50%;
-  overflow: hidden;
-  flex: none;
-
-  img {
-    object-fit: cover;
-  }
-
-  .avatar,
-  .initials {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ccc;
-  }
 }
 </style>

@@ -47,9 +47,8 @@ const {back} = useRouter()
 <style scoped lang="scss">
 .chat-window-header {
   display: flex;
-  flex: 1;
+  flex: none;
   align-items: center;
-  align-self: flex-start;
   padding: 0.5rem;
   gap: 0.25rem;
   background: $COLORS_DOMINANT_BG_MEDIUM_CONTRAST;
