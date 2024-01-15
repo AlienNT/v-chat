@@ -1,19 +1,6 @@
-<script setup>
-
-import {iconTgPath} from "@/helpers/icons.js";
-import VIcon from "@/components/UI/icons/VIcon.vue";
-</script>
-
 <template>
   <div class="auth-page">
-    <div class="wrapper" style="display: flex; flex-wrap: wrap">
-      <div class="col" v-for="(icon, index) in iconTgPath">
-        <VIcon
-            :src="icon"
-        />
-        {{ index }}
-      </div>
-    </div>
+    <router-view/>
   </div>
 </template>
 
