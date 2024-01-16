@@ -1,7 +1,7 @@
 <script setup>
 import NavigationBarIcon from "@/components/navigationBar/NavigationBarIcon.vue";
 import NavigationBarTitle from "@/components/navigationBar/NavigationBarTitle.vue";
-import {computed} from "vue";
+import {computed, onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
 
 const props = defineProps({
@@ -19,16 +19,18 @@ const props = defineProps({
 const router = useRouter()
 
 const active = computed(() => {
-  return router.currentRoute.value.fullPath === props.path
+  return router.currentRoute.value.fullPath.indexOf(props.path) > -1
 })
+
 </script>
 
 <template>
-  <li class="navigation-bar__item">
+  <li class="navigation-bar__item" ref="navLink">
     <RouterLink
         :to="path"
-        class="nav-item"
         active-class="nav-active"
+        class="nav-item"
+        exact-path
     >
       <div class="nav-icon">
         <NavigationBarIcon
