@@ -1,5 +1,5 @@
 import {useWebSocket} from "@/composables/useWebSocket.js";
-import {useAuth} from "@/composables/useAuth.js";
+import {useAuth} from "@/composables/store/useAuth.js";
 
 const {send} = useWebSocket()
 const {token} = useAuth()

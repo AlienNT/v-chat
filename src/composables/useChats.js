@@ -1,5 +1,4 @@
 import {computed, reactive} from "vue";
-import axios from "axios";
 
 const state = reactive({
     chatsList: [
@@ -40,7 +39,7 @@ const state = reactive({
             newMessageAmount: 1
         },
         {
-            _id: 1,
+            _id: 5,
             title: 'Alex',
             avatar: '',
             type: 'dialog',
@@ -49,7 +48,7 @@ const state = reactive({
             newMessageAmount: 1
         },
         {
-            _id: 2,
+            _id: 6,
             title: 'Group',
             avatar: '',
             type: 'chat',
@@ -58,7 +57,7 @@ const state = reactive({
             newMessageAmount: 1
         },
         {
-            _id: 3,
+            _id: 7,
             title: 'Alex Alex',
             avatar: '',
             type: 'dialog',
@@ -67,7 +66,7 @@ const state = reactive({
             newMessageAmount: 1
         },
         {
-            _id: 2,
+            _id: 8,
             title: 'Group',
             avatar: '',
             type: 'chat',
@@ -76,7 +75,7 @@ const state = reactive({
             newMessageAmount: 1
         },
         {
-            _id: 3,
+            _id: 9,
             title: 'Alex Alex',
             avatar: '',
             type: 'dialog',
@@ -85,7 +84,7 @@ const state = reactive({
             newMessageAmount: 1
         },
         {
-            _id: 4,
+            _id: 10,
             title: 'Group',
             avatar: '',
             type: 'chat',
@@ -94,7 +93,7 @@ const state = reactive({
             newMessageAmount: 1
         },
         {
-            _id: 1,
+            _id: 11,
             title: 'Alex',
             avatar: '',
             type: 'dialog',
@@ -103,7 +102,7 @@ const state = reactive({
             newMessageAmount: 1
         },
         {
-            _id: 2,
+            _id: 12,
             title: 'Group',
             avatar: '',
             type: 'chat',
@@ -112,7 +111,7 @@ const state = reactive({
             newMessageAmount: 1
         },
         {
-            _id: 3,
+            _id: 13,
             title: 'Alex Alex',
             avatar: '',
             type: 'dialog',
@@ -121,7 +120,7 @@ const state = reactive({
             newMessageAmount: 1
         },
         {
-            _id: 4,
+            _id: 14,
             title: 'Group',
             avatar: '',
             type: 'chat',
@@ -131,37 +130,34 @@ const state = reactive({
         }
     ],
     filter: null,
-    loading: false
+    loading: false,
+    openedChatId: null
 })
 
 export function useChats() {
     const chats = computed(() => {
-        return state.filter ? state.chatsList.filter(chat => chat.category === state.filter) : state.chatsList
+        return state.filter ?
+            state.chatsList.filter(chat => chat.category === state.filter) :
+            state.chatsList
     })
 
-    async function setChatsList(data) {
-        return state.chatsList = data
-    }
-
-    async function fetchChatsList() {
-        setChatsLoading()
-
-    }
-
-    const chatsLoading = computed(() => {
-        return state.loading
+    const chat = (id) => computed(() => {
+        return state.chatsList?.find(chat => chat?._id === id)
     })
 
-    function setChatsLoading(value) {
-        return state.loading = value
+    const openedChatId = computed(() => {
+        return state.openedChatId
+    })
+
+    function setOpenedChatId(id) {
+        return state.openedChatId = id
     }
 
     return {
         chats,
-        setChatsList,
-        fetchChatsList,
-        chatsLoading
+        chat,
 
-
+        openedChatId,
+        setOpenedChatId
     }
 }

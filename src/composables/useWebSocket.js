@@ -1,27 +1,42 @@
-import ApiConfig from "../../config/apiConfig.js";
 import {computed, reactive} from "vue";
+import {createWebSocket} from "@/helpers/webSocket.js";
 
-const socket = new WebSocket(ApiConfig.API_URL)
+const state = reactive({
+    connected: false,
+    readyState: null,
+    socket: null
+})
 
-const events = {
-    ADD_MESSAGE: 'addMessage',
-    DELETE_MESSAGE: 'deleteMessage'
-}
+createWebSocket(state, {})
 
 export function useWebSocket() {
-    const webSocket = socket
+    const webSocket = computed(() => {
+        return state.socket
+    })
 
     function close() {
-        socket.close()
+        webSocket.value?.close()
     }
 
     function send(message) {
-        socket.send(message)
+        webSocket.value?.send(message)
     }
+
+    const connected = computed(() => {
+        return state.connected
+    })
+
+    const readyState = computed(() => {
+        return state.readyState
+    })
 
     return {
         webSocket,
+
         close,
-        send
+        send,
+
+        connected,
+        readyState,
     }
 }
