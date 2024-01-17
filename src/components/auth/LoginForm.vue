@@ -1,12 +1,13 @@
 <script setup>
+import {reactive} from "vue";
+import {useAuthRequest} from "@/composables/api/useAuthRequest.js";
+
 import AuthFormTemplate from "@/components/auth/AuthFormTemplate.vue";
 import VInput from "@/components/UI/VInput.vue";
 import VButton from "@/components/UI/VButton.vue";
 import FormLink from "@/components/auth/FormLink.vue";
-import {useAuth} from "@/composables/useAuth.js";
-import {reactive} from "vue";
 
-const {login} = useAuth()
+const {login} = useAuthRequest()
 
 const formData = reactive({
   login: '',
@@ -46,7 +47,3 @@ const formData = reactive({
     </AuthFormTemplate>
   </form>
 </template>
-
-<style scoped lang="scss">
-
-</style>

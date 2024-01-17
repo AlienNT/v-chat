@@ -1,12 +1,20 @@
 <script setup>
-import {useChats} from "@/composables/useChats.js";
-import {computed, onBeforeUnmount, onMounted} from "vue";
+import {computed, onBeforeUnmount, onMounted, watch} from "vue";
+
 import {useRouter} from "vue-router";
+import {useChats} from "@/composables/useChats.js";
+import {useMessages} from "@/composables/store/useMessages.js";
+import {useMessageRequest} from "@/composables/api/useMessageRequest.js";
+import {useProfile} from "@/composables/store/useProfile.js";
+
 import ChatWindowHeader from "@/components/chatWindow/ChatWindowHeader.vue";
 import ChatWindowMessages from "@/components/chatWindow/ChatWindowMessages.vue";
 import ChatWindowBottomBar from "@/components/chatWindow/ChatWindowBottomBar.vue";
 
 const {chat} = useChats()
+const {messages} = useMessages()
+const {getMessages} = useMessageRequest()
+const {userId} = useProfile()
 const router = useRouter()
 
 onMounted(() => {
@@ -19,11 +27,26 @@ onBeforeUnmount(() => {
 })
 
 const id = computed(() => {
-  return Number(router.currentRoute.value.params?.id)
+  return router.currentRoute.value.params?.id
 })
 
 const openedChat = computed(() => {
   return chat(id.value).value
+})
+
+const dialogMessages = computed(() => {
+  return messages(id.value).value
+})
+
+watch(() => id.value, value => {
+  if (value) {
+    getMessages({
+      dialogId: id.value,
+      userId: userId.value
+    })
+  }
+}, {
+  immediate: true
 })
 
 function onKeydown(e) {
@@ -40,12 +63,16 @@ function onKeydown(e) {
 <template>
   <div class="chat-window">
     <ChatWindowHeader
-        :avatar="openedChat?.avatar"
-        :title="openedChat?.title"
+        :avatar="dialogMessages?.avatar"
+        :title="'test'"
     />
-
-    <ChatWindowMessages/>
-    <ChatWindowBottomBar/>
+    <ChatWindowMessages
+        :messages="dialogMessages"
+        :user-id="userId"
+    />
+    <ChatWindowBottomBar
+        :chat-id="id"
+    />
   </div>
 </template>
 

@@ -7,3 +7,18 @@ export function getInitials(string) {
         string.split(' ').map(substr => substr[0].toUpperCase()).join(' ') :
         string
 }
+
+export function toBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+
+        reader.onload = () => {
+            return resolve(reader.result);
+        }
+        reader.onerror = () => {
+            return reject;
+        }
+    });
+}

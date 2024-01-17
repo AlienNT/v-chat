@@ -1,7 +1,5 @@
 <script setup>
-import NavigationBarIcon from "@/components/navigationBar/NavigationBarIcon.vue";
-import NavigationBarTitle from "@/components/navigationBar/NavigationBarTitle.vue";
-import {computed, onMounted, ref} from "vue";
+import {computed, defineAsyncComponent} from "vue";
 import {useRouter} from "vue-router";
 
 const props = defineProps({
@@ -18,6 +16,14 @@ const props = defineProps({
 
 const router = useRouter()
 
+const AsyncNavigationTitle = defineAsyncComponent(() =>
+    import('@/components/navigationBar/NavigationBarTitle.vue')
+)
+
+const AsyncNavigationIcon = defineAsyncComponent(() =>
+    import('@/components/navigationBar/NavigationBarIcon.vue')
+)
+
 const active = computed(() => {
   return router.currentRoute.value.fullPath.indexOf(props.path) > -1
 })
@@ -33,12 +39,12 @@ const active = computed(() => {
         exact-path
     >
       <div class="nav-icon">
-        <NavigationBarIcon
+        <AsyncNavigationIcon
             :route-name="name"
             :is-active="active"
         />
       </div>
-      <NavigationBarTitle
+      <AsyncNavigationTitle
           class="nav-title"
           :title="title"
       />
@@ -63,7 +69,6 @@ const active = computed(() => {
   align-items: center;
   gap: 2px;
 }
-
 
 .nav-title {
   .nav-active & {

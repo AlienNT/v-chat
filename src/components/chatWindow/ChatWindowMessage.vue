@@ -1,11 +1,13 @@
 <script setup>
 import {computed, defineAsyncComponent} from "vue";
 import MessageTime from "@/components/chatWindow/components/MessageTime.vue";
-import {useAuth} from "@/composables/useAuth.js";
 
 const props = defineProps({
   message: {
     type: Object
+  },
+  userId: {
+    type: String
   }
 })
 
@@ -17,6 +19,10 @@ const ChatText = defineAsyncComponent(() =>
     import('@/components/chatWindow/components/MessageText.vue')
 )
 
+const sender = computed(() => {
+  return props.message?.sender
+})
+
 const images = computed(() => {
   return props.message?.files
 })
@@ -26,13 +32,13 @@ const text = computed(() => {
 })
 
 const time = computed(() => {
-  return props.message?.time
+  return props.message?.createdAt
 })
 
-const {token} = useAuth()
 const isOwn = computed(() => {
-  return token.value === props.message?.token
+  return props.userId === sender.value
 })
+
 </script>
 
 <template>

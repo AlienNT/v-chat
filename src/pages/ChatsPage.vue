@@ -1,12 +1,17 @@
 <script setup>
-import {useChats} from "@/composables/useChats.js";
-import ChatsList from "@/components/chats/ChatsList.vue";
-import ChatWindow from "@/components/chatWindow/ChatWindow.vue";
-import {useRouter} from "vue-router";
-import {computed} from "vue";
+import {computed, onMounted} from "vue";
 
-const {chats, chatsLoading, chat} = useChats()
+import {useRouter} from "vue-router";
+import {useDialogs} from "@/composables/store/useDialogs.js";
+import {useDialogsRequest} from "@/composables/api/useDialogsRequest.js";
+import {useProfile} from "@/composables/store/useProfile.js";
+
+import ChatsList from "@/components/chats/ChatsList.vue";
+
+const {getDialogs, createDialog} = useDialogsRequest()
 const router = useRouter()
+const {dialogs} = useDialogs()
+const {userId} = useProfile()
 
 function onChatOpen(e) {
   router.push({name: 'chat-window', params: {id: e}})
@@ -15,16 +20,26 @@ function onChatOpen(e) {
 const isOpenedChatWindowMobile = computed(() => {
   return !!router.currentRoute.value.params?.id
 })
+
+onMounted(() => {
+  if (!dialogs.value?.length) {
+    getDialogs({userId: userId.value})
+  }
+})
+
 </script>
 
 <template>
   <div class="page chats-page">
     <ChatsList
-        :chat-list="chats"
+        :chat-list="dialogs"
         class="chats-list"
         @on-click="onChatOpen"
     />
-    <div class="chat-viewport" :class="isOpenedChatWindowMobile && 'active'">
+    <div
+        class="chat-viewport"
+        :class="isOpenedChatWindowMobile && 'active'"
+    >
       <router-view/>
     </div>
   </div>

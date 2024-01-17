@@ -1,23 +1,30 @@
 <script setup>
+import {reactive} from "vue";
+import {useMessageRequest} from "@/composables/api/useMessageRequest.js";
+import {useProfile} from "@/composables/store/useProfile.js";
+
 import ChatWindowInput from "@/components/chatWindow/ChatWindowInput.vue";
 import ChatWindowFilePicker from "@/components/chatWindow/ChatWindowFilePicker.vue";
-import {reactive} from "vue";
-import {useWebSocket} from "@/composables/useWebSocket.js";
 
-const {send, events} = useWebSocket()
+const {addMessage} = useMessageRequest()
+const {userId} = useProfile()
+
+const props = defineProps({
+  chatId: {
+    type: [String, Number]
+  }
+})
 
 const state = reactive({
   message: '',
-  files: ''
+  files: '',
 })
 
-function onSubmit(e) {
-  console.log('onSubmit', state)
-  const sendData = {type: events.ADD_MESSAGE, ...state}
-
-  console.log('sendData', sendData)
-
-  send(sendData)
+function onSubmit() {
+  addMessage({
+    dialogId: props.chatId,
+    message: {...state, sender: userId.value}
+  })
   resetState()
 }
 

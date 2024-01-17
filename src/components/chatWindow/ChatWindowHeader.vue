@@ -1,8 +1,7 @@
 <script setup>
-
-import Avatar from "@/components/UI/Avatar.vue";
-import ArrowBack from "@/components/UI/icons/ArrowBack.vue";
 import {useRouter} from "vue-router";
+
+import ArrowBack from "@/components/UI/icons/ArrowBack.vue";
 import ChatsAvatar from "@/components/chats/ChatsAvatar.vue";
 import ChatWindowHeadline from "@/components/chatWindow/ChatWindowHeadline.vue";
 
@@ -27,7 +26,6 @@ const {back} = useRouter()
           @click.stop="back"
       />
     </div>
-
     <div class="header-bar">
       <div class="user-avatar">
         <ChatsAvatar

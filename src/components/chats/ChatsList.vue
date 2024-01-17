@@ -14,11 +14,18 @@ const props = defineProps({
   }
 })
 
+defineEmits(['onClick'])
+
 const router = useRouter()
-const emit = defineEmits(['onClick'])
 
 const activeChatId = computed(() => {
   return Number(router.currentRoute.value.params?.id) || null
+})
+
+const title = (_id) => computed(() => {
+  const members = props.chatList.find(item => item._id === _id)?.members
+
+  return members.map(member => member?.name + (member?.lastName || ''))?.join(', ')
 })
 </script>
 
@@ -31,7 +38,7 @@ const activeChatId = computed(() => {
         :is-active="chat?._id===activeChatId"
         :avatar="chat?.avatar"
         :message="chat?.message"
-        :title="chat?.title"
+        :title="title(chat?._id).value"
         @click.stop="$emit('onClick', chat?._id)"
     />
   </ul>

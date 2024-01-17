@@ -1,6 +1,6 @@
 import routerNames from "@/router/routerNames.js";
 import {createRouter, createWebHistory} from "vue-router";
-import {useAuth} from "@/composables/useAuth.js";
+import {useAuth} from "@/composables/store/useAuth.js";
 
 const {isAuth} = useAuth()
 
