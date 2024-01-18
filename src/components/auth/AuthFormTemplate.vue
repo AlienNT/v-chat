@@ -1,16 +1,24 @@
 <script setup>
+const emit = defineEmits(['onSubmit'])
 
+function onKeyDown(e) {
+  e.code === 'Enter' && emit('onSubmit')
+}
 </script>
 
 <template>
-  <div class="auth-form-template">
+  <form
+      class="auth-form-template"
+      @submit.prevent
+      @keydown="onKeyDown"
+  >
     <div class="form-field inputs">
       <slot name="fields"/>
     </div>
     <div class="form-field buttons">
       <slot name="buttons"/>
     </div>
-  </div>
+  </form>
 </template>
 
 <style scoped lang="scss">
