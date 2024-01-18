@@ -1,12 +1,14 @@
 <script setup>
 import {computed, defineAsyncComponent, watch} from "vue";
+import {setProperty} from "@/helpers/index.js";
+import {apiRequest} from "@/helpers/request.js";
+
 import {useRouter} from "vue-router";
 import {useAuth} from "@/composables/store/useAuth.js";
 import {useColors} from "@/composables/useColors.js";
 import {useProfileRequest} from "@/composables/api/useProfileRequest.js";
 import {useWebSocket} from "@/composables/useWebSocket.js";
-import {setProperty} from "@/helpers/index.js";
-import {apiRequest} from "@/helpers/request.js";
+import {useProfile} from "@/composables/store/useProfile.js";
 
 import routerNames from "@/router/routerNames.js";
 import {wsEvents} from "@/helpers/webSocket.js";
@@ -14,6 +16,7 @@ import {wsEvents} from "@/helpers/webSocket.js";
 const {connected} = useWebSocket()
 const {setToken, isAuth, token} = useAuth()
 const {getProfile} = useProfileRequest()
+const {userId} = useProfile()
 const {colors} = useColors()
 const router = useRouter()
 
@@ -23,13 +26,13 @@ const isShowNavBar = computed(() => {
   return router.currentRoute.value?.path === routerNames.AUTH_PAGE.path
 })
 
-const Loader = defineAsyncComponent({
-  loader: () => import('@/components/UI/Loader.vue'),
-})
+const Loader = defineAsyncComponent(() =>
+    import('@/components/UI/Loader.vue')
+)
 
-const AsyncNavigationBar = defineAsyncComponent({
-  loader: () => import('@/components/navigationBar/NavigationBar.vue')
-})
+const AsyncNavigationBar = defineAsyncComponent(() =>
+    import('@/components/navigationBar/NavigationBar.vue')
+)
 
 if (localToken) {
   setToken(localToken)
@@ -37,9 +40,8 @@ if (localToken) {
 
 setColors(colors.value)
 
-watch(() => connected.value, value => {
-  console.log('connected', value)
-  if (!value) return
+watch(() => !!token.value && !!connected.value, value => {
+  if (!value || !connected.value) return
 
   apiRequest({
     type: wsEvents.GET_PROFILE
