@@ -6,6 +6,9 @@ import ChatsItemMessageBody from "@/components/chats/ChatsItemMessageBody.vue";
 import {colors} from "@/router/colors.js";
 import {computed} from "vue";
 
+import {useProfile} from "@/composables/store/useProfile.js";
+import {objectFieldsToString} from "@/helpers/index.js";
+
 const props = defineProps({
   title: {
     type: String
@@ -16,10 +19,27 @@ const props = defineProps({
   message: {
     type: String
   },
+  members: {
+    type: Array,
+    default: []
+  },
   isActive: {
     type: Boolean,
     default: false
   }
+})
+
+const {userId} = useProfile()
+
+const filteredMembers = computed(() => {
+  return props.members.filter(member => member?._id !== userId.value)
+})
+
+const dialogTitle = computed(() => {
+  return filteredMembers.value.map(member => objectFieldsToString({
+    object: member,
+    fields: ['name', 'lastName']
+  })).join(', ')
 })
 
 const fontColor = computed(() => {
@@ -33,13 +53,13 @@ const fontColor = computed(() => {
       :class="isActive && 'active'"
   >
     <ChatsAvatar
-        :name="title"
+        :name="dialogTitle"
         :src="avatar"
     />
     <div class="content">
       <ChatsItemMessageHeader
           class="message-header"
-          :title="title"
+          :title="dialogTitle"
           :color="fontColor"
       />
       <ChatsItemMessageBody
