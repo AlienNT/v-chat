@@ -1,5 +1,5 @@
 import {apiRequest} from "@/helpers/request.js";
-import {wsEvents} from "@/helpers/webSocket.js";
+import {wsEvents} from "@/api/wsEvents.js";
 
 export function useSettingsRequest() {
     function getSettings({userId}) {
