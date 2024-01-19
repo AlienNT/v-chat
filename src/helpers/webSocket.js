@@ -1,38 +1,16 @@
-import {useAuth} from "@/composables/store/useAuth.js";
 import ApiConfig from "../../config/apiConfig.js";
-import {useMessages} from "@/composables/store/useMessages.js";
-import {useProfile} from "@/composables/store/useProfile.js";
-import {useDialogs} from "@/composables/store/useDialogs.js";
-
-const {setToken} = useAuth()
-const {setMessage, setMessages} = useMessages()
-const {setProfile} = useProfile()
-const {setDialogs} = useDialogs()
-
-export const wsEvents = {
-    LOGIN: 'login',
-    LOGOUT: 'logout',
-    REGISTRATION: 'registration',
-    CREATE_DIALOG: 'createDialog',
-    UPDATE_DIALOG: 'updateDialog',
-    GET_DIALOGS: 'getDialogs',
-    DELETE_DIALOG: 'deleteDialog',
-    ADD_MESSAGE: 'addMessage',
-    UPDATE_MESSAGE: 'updateMessage',
-    DELETE_MESSAGE: 'deleteMessage',
-    GET_MESSAGES: 'getMessages',
-    RESPONSE_STATUS: 'responseStatus',
-    GET_PROFILE: 'getProfile',
-    UPDATE_PROFILE: 'updateProfile',
-    GET_SETTINGS: 'getSettings',
-    UPDATE_SETTINGS: 'updateSettings'
-
-}
+import {successActions} from "@/helpers/messageActions.js";
+import {wsEvents} from "@/api/wsEvents.js";
 
 export function createWebSocket(state, {
     url = ApiConfig.API_URL,
     reconnect = true
 }) {
+
+    const args = arguments
+
+    console.log('args', args)
+
     state.socket = new WebSocket(url)
 
     state.socket.onopen = (event) =>
@@ -79,6 +57,10 @@ function onMessage({state, event}) {
     console.log('message', message)
     console.groupEnd()
 
+    if (message.status !== 200) {
+        return errorAction(state, message)
+    }
+
     messageAction(state, message)
 }
 
@@ -106,18 +88,25 @@ function onClose({state, reconnect, url, event}) {
 function messageAction(state, message) {
     switch (message?.type) {
         case wsEvents.LOGIN:
-            return setToken(message?.tokens?.refreshToken)
+            return successActions.setToken(message)
 
         case wsEvents.ADD_MESSAGE:
-            return setMessage(message?.body?.dialogId, message?.body)
+            return successActions.setMessage(message)
 
         case wsEvents.GET_MESSAGES:
-            return setMessages(message?.body?.dialogId, message?.body?.messages)
+            return successActions.setMessages(message)
 
         case wsEvents.GET_PROFILE:
-            return setProfile(message?.body)
+            return successActions.setProfile(message)
 
         case wsEvents.GET_DIALOGS:
-            return setDialogs(message?.body)
+            return successActions.setDialogs(message)
     }
 }
+
+function errorAction(state, message) {
+    console.group('ERROR: ' + message?.type)
+    console.log('message', message)
+    console.groupEnd()
+}
+
