@@ -1,12 +1,10 @@
 <script setup>
-import {computed, onMounted} from "vue";
+import {computed, defineAsyncComponent, watch} from "vue";
 
 import {useRouter} from "vue-router";
 import {useDialogs} from "@/composables/store/useDialogs.js";
 import {useDialogsRequest} from "@/composables/api/useDialogsRequest.js";
 import {useProfile} from "@/composables/store/useProfile.js";
-
-import ChatsList from "@/components/chats/ChatsList.vue";
 
 const {getDialogs, createDialog} = useDialogsRequest()
 const router = useRouter()
@@ -21,17 +19,24 @@ const isOpenedChatWindowMobile = computed(() => {
   return !!router.currentRoute.value.params?.id
 })
 
-onMounted(() => {
-  if (!dialogs.value?.length) {
+const AsyncChatsList = defineAsyncComponent(() =>
+    import('@/components/chats/ChatsList.vue')
+)
+
+watch(() => userId.value, (value) => {
+  if (!dialogs.value?.length && value) {
     getDialogs({userId: userId.value})
   }
+}, {
+  immediate: true
 })
 
 </script>
 
 <template>
   <div class="page chats-page">
-    <ChatsList
+    <AsyncChatsList
+        v-if="dialogs?.length"
         :chat-list="dialogs"
         class="chats-list"
         @on-click="onChatOpen"
