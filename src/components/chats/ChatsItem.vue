@@ -35,11 +35,15 @@ const filteredMembers = computed(() => {
   return props.members.filter(member => member?._id !== userId.value)
 })
 
-const dialogTitle = computed(() => {
+const membersTitle = computed(() => {
   return filteredMembers.value.map(member => objectFieldsToString({
     object: member,
     fields: ['name', 'lastName']
   })).join(', ')
+})
+
+const dialogTitle = computed(() => {
+  return props.title ? props.title : membersTitle.value
 })
 
 const fontColor = computed(() => {
