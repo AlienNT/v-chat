@@ -4,7 +4,7 @@ export function setProperty(name, value) {
 
 export function getInitials(string) {
     return string?.length ?
-        string.split(' ').map(substr => substr[0].toUpperCase()).join(' ') :
+        string.split(' ').map(substr => substr[0]?.toUpperCase()).join(' ') :
         string
 }
 
@@ -21,4 +21,8 @@ export function toBase64(file) {
             return reject;
         }
     });
+}
+
+export function objectFieldsToString({object = {}, separator = ' ', fields = []}) {
+    return fields.length ? fields.map(field => object?.[field] || '').join(separator) : ''
 }
