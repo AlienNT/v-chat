@@ -6,11 +6,6 @@ export function createWebSocket(state, {
     url = ApiConfig.API_URL,
     reconnect = true
 }) {
-
-    const args = arguments
-
-    console.log('args', args)
-
     state.socket = new WebSocket(url)
 
     state.socket.onopen = (event) =>
