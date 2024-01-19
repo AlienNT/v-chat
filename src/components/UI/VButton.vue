@@ -4,7 +4,7 @@ defineProps({
     type: String,
     default: 'button'
   },
-  label: {
+  title: {
     type: String,
     default: 'button'
   },
@@ -21,7 +21,7 @@ defineProps({
       :type="type"
       :disabled="disabled"
   >
-    {{ label }}
+    {{ title }}
   </button>
 </template>
 
