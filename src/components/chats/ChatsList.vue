@@ -1,8 +1,10 @@
 <script setup>
 
 import ChatsItem from "@/components/chats/ChatsItem.vue";
-import {useRouter} from "vue-router";
+
 import {computed} from "vue";
+import {useRouter} from "vue-router";
+import {useProfile} from "@/composables/store/useProfile.js";
 
 const props = defineProps({
   chatList: {
@@ -16,17 +18,13 @@ const props = defineProps({
 
 defineEmits(['onClick'])
 
+const {userId} = useProfile()
 const router = useRouter()
 
 const activeChatId = computed(() => {
-  return Number(router.currentRoute.value.params?.id) || null
+  return router.currentRoute.value.params?.id
 })
 
-const title = (_id) => computed(() => {
-  const members = props.chatList.find(item => item._id === _id)?.members
-
-  return members.map(member => member?.name + (member?.lastName || ''))?.join(', ')
-})
 </script>
 
 <template>
@@ -38,7 +36,8 @@ const title = (_id) => computed(() => {
         :is-active="chat?._id===activeChatId"
         :avatar="chat?.avatar"
         :message="chat?.message"
-        :title="title(chat?._id).value"
+        :title="chat?.title"
+        :members="chat?.members"
         @click.stop="$emit('onClick', chat?._id)"
     />
   </ul>
@@ -51,5 +50,6 @@ const title = (_id) => computed(() => {
   flex: 1;
   max-width: 400px;
   overflow-y: scroll;
+  color: #fa5c5c;
 }
 </style>
