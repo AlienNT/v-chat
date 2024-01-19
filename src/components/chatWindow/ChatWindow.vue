@@ -2,7 +2,6 @@
 import {computed, onBeforeUnmount, onMounted, watch} from "vue";
 
 import {useRouter} from "vue-router";
-import {useChats} from "@/composables/useChats.js";
 import {useMessages} from "@/composables/store/useMessages.js";
 import {useMessageRequest} from "@/composables/api/useMessageRequest.js";
 import {useProfile} from "@/composables/store/useProfile.js";
@@ -10,9 +9,11 @@ import {useProfile} from "@/composables/store/useProfile.js";
 import ChatWindowHeader from "@/components/chatWindow/ChatWindowHeader.vue";
 import ChatWindowMessages from "@/components/chatWindow/ChatWindowMessages.vue";
 import ChatWindowBottomBar from "@/components/chatWindow/ChatWindowBottomBar.vue";
+import {useDialogs} from "@/composables/store/useDialogs.js";
+import {objectFieldsToString} from "@/helpers/index.js";
 
-const {chat} = useChats()
 const {messages} = useMessages()
+const {members} = useDialogs()
 const {getMessages} = useMessageRequest()
 const {userId} = useProfile()
 const router = useRouter()
@@ -30,12 +31,23 @@ const id = computed(() => {
   return router.currentRoute.value.params?.id
 })
 
-const openedChat = computed(() => {
-  return chat(id.value).value
-})
-
 const dialogMessages = computed(() => {
   return messages(id.value).value
+})
+
+const dialogMembers = computed(() => {
+  return members(id.value).value
+})
+
+const filteredMember = computed(() => {
+  return dialogMembers.value?.filter(member => member._id !== userId.value)
+})
+
+const dialogTitle = computed(() => {
+  return filteredMember.value.map(member => objectFieldsToString({
+    object: member,
+    fields: ['name', 'lastName']
+  })).join(', ')
 })
 
 watch(() => id.value, value => {
@@ -64,7 +76,7 @@ function onKeydown(e) {
   <div class="chat-window">
     <ChatWindowHeader
         :avatar="dialogMessages?.avatar"
-        :title="'test'"
+        :title="dialogTitle"
     />
     <ChatWindowMessages
         :messages="dialogMessages"
