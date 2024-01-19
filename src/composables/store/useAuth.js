@@ -10,7 +10,7 @@ export function useAuth() {
         state.token
     )
 
-    function setToken(token) {
+    function setToken({token}) {
         console.group('setToken')
         console.warn('token', token)
         console.groupEnd()
@@ -28,9 +28,15 @@ export function useAuth() {
     }
 
 
+    function resetToken() {
+        localStorage.removeItem('token')
+        state.token = ''
+    }
+
     return {
         token,
         setToken,
+        resetToken,
 
         isAuth,
         setIsAuth,

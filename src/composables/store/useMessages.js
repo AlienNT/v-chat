@@ -1,26 +1,27 @@
 import {computed, reactive} from "vue";
 
 const state = reactive({
-    messages: {}
+    dialogs: {},
+    members: []
 })
 
 export function useMessages() {
     const messages = (dialogId) => computed(() => {
-        return state.messages[dialogId]
+        return state.dialogs[dialogId]
     })
 
-    function setMessages(dialogId, messages) {
-        state.messages[dialogId] = messages
+    function setMessages({dialogId, messages}) {
+        state.dialogs[dialogId] = messages
     }
 
-    function setMessage(dialogId, message) {
-        !state.messages[dialogId] ?
-            state.messages[dialogId] = [message] :
-            state.messages[dialogId].push(message)
+    function setMessage({dialogId, message}) {
+        !state.dialogs[dialogId] ?
+            state.dialogs[dialogId] = [message] :
+            state.dialogs[dialogId].push(message)
     }
-
     function resetMessages() {
-        state.messages = {}
+        state.dialogs = {}
+        state.members = []
     }
 
     return {

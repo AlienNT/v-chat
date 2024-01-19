@@ -9,9 +9,9 @@ export function useProfile() {
         return state.profile
     })
 
-    function setProfile(data) {
-        console.log('set profile', data)
-        state.profile = data
+    function setProfile({profile}) {
+        console.log('set profile', profile)
+        state.profile = profile
     }
 
     function resetProfile() {

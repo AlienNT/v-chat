@@ -1,7 +1,7 @@
 import {computed, reactive} from "vue";
 
 const state = reactive({
-    dialogs: []
+    dialogs: [],
 })
 
 export function useDialogs() {
@@ -13,9 +13,13 @@ export function useDialogs() {
         return state.dialogs.find(dialog => dialog?._id === _id)
     })
 
-    function setDialogs(data) {
-        console.log('setDialogs', data)
-        state.dialogs = [...state.dialogs, ...data]
+    const members = (dialogId) => computed(() => {
+        return dialog(dialogId).value?.members
+    })
+
+    function setDialogs({dialogs}) {
+        console.log('setDialogs', dialogs)
+        state.dialogs = [...state.dialogs, ...dialogs]
     }
 
     function resetDialogs() {
@@ -25,6 +29,7 @@ export function useDialogs() {
     return {
         dialogs,
         dialog,
+        members,
         setDialogs,
         resetDialogs
     }
