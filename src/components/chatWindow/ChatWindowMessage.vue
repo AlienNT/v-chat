@@ -36,7 +36,7 @@ const time = computed(() => {
 })
 
 const isOwn = computed(() => {
-  return props.userId === sender.value
+  return props.userId === sender.value?._id
 })
 
 </script>
