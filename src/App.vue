@@ -11,7 +11,7 @@ import {useWebSocket} from "@/composables/useWebSocket.js";
 import {useProfile} from "@/composables/store/useProfile.js";
 
 import routerNames from "@/router/routerNames.js";
-import {wsEvents} from "@/helpers/webSocket.js";
+import {wsEvents} from "@/api/wsEvents.js";
 
 const {connected} = useWebSocket()
 const {setToken, isAuth, token} = useAuth()
@@ -35,7 +35,7 @@ const AsyncNavigationBar = defineAsyncComponent(() =>
 )
 
 if (localToken) {
-  setToken(localToken)
+  setToken({token: localToken})
 }
 
 setColors(colors.value)
