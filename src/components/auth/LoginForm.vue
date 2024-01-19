@@ -16,34 +16,32 @@ const formData = reactive({
 </script>
 
 <template>
-  <form
-      @submit.prevent="login(formData)"
+  <AuthFormTemplate
+      @on-submit="login(formData)"
   >
-    <AuthFormTemplate>
-      <template v-slot:fields>
-        <VInput
-            placeholder="Email"
-            :value="formData.login"
-            @on-input="e => formData.login = e"
-        />
-        <VInput
-            type="password"
-            placeholder="Password"
-            :value="formData.password"
-            @on-input="e => formData.password = e"
-        />
-      </template>
-      <template v-slot:buttons>
-        <VButton
-            title="login"
-            @click="login(formData)"
-        />
-        <FormLink
-            title="registration"
-            to="registration"
-            use-name
-        />
-      </template>
-    </AuthFormTemplate>
-  </form>
+    <template v-slot:fields>
+      <VInput
+          placeholder="Email"
+          :value="formData.login"
+          @on-input="e => formData.login = e"
+      />
+      <VInput
+          type="password"
+          placeholder="Password"
+          :value="formData.password"
+          @on-input="e => formData.password = e"
+      />
+    </template>
+    <template v-slot:buttons>
+      <VButton
+          title="login"
+          @click="login(formData)"
+      />
+      <FormLink
+          title="registration"
+          to="registration"
+          use-name
+      />
+    </template>
+  </AuthFormTemplate>
 </template>
