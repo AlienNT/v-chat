@@ -5,11 +5,12 @@ import {useRouter} from "vue-router";
 import {useMessages} from "@/composables/store/useMessages.js";
 import {useMessageRequest} from "@/composables/api/useMessageRequest.js";
 import {useProfile} from "@/composables/store/useProfile.js";
+import {useDialogs} from "@/composables/store/useDialogs.js";
 
 import ChatWindowHeader from "@/components/chatWindow/ChatWindowHeader.vue";
 import ChatWindowMessages from "@/components/chatWindow/ChatWindowMessages.vue";
 import ChatWindowBottomBar from "@/components/chatWindow/ChatWindowBottomBar.vue";
-import {useDialogs} from "@/composables/store/useDialogs.js";
+
 import {objectFieldsToString} from "@/helpers/index.js";
 
 const {messages} = useMessages()
