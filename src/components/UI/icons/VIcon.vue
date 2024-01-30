@@ -1,6 +1,7 @@
 <script setup>
 import {computed} from "vue";
 import {colors} from "@/router/colors.js";
+import {getStyles} from "@/helpers/index.js";
 
 const props = defineProps({
   src: {
@@ -16,10 +17,10 @@ const props = defineProps({
 defineEmits(['onClick'])
 
 const style = computed(() => {
-  return [
-    !!props.src && `mask-image: url(${props.src})`,
-    !!props.backgroundColor && `background-color: ${props.backgroundColor}`
-  ].join('; ')
+  return getStyles({
+    backgroundColor: props.backgroundColor,
+    maskImage: props.src
+  })
 })
 </script>
 
