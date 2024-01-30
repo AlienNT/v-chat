@@ -1,6 +1,7 @@
 <script setup>
 import NavigationBarItem from "@/components/navigationBar/NavigationBarItem.vue";
 import {computed} from "vue";
+import {getStyles} from "@/helpers/index.js";
 
 const props = defineProps({
   navigationList: {
@@ -9,9 +10,9 @@ const props = defineProps({
 })
 
 const style = computed(() => {
-  return [
-    props.navigationList.length && `flex: 0 0 ${100 / props.navigationList.length}%`
-  ].join('; ')
+  return getStyles({
+    flex: '0 0 ' + 100 / props.navigationList.length
+  })
 })
 
 </script>
