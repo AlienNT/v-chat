@@ -8,5 +8,13 @@ export const _ = {
         }
 
         return object === undefined ? defaultVal : object;
+    },
+    debounce: (func, delay = 100) => {
+        let timeout
+
+        return () => {
+            clearTimeout(timeout)
+            timeout = setTimeout(() => func(), delay)
+        }
     }
 }
