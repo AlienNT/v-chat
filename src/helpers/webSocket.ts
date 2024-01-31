@@ -1,8 +1,10 @@
 import ApiConfig from "../../config/apiConfig.js";
-import {successActions} from "@/helpers/messageActions.js";
-import {wsEvents} from "@/api/wsEvents.js";
+import {wsEvents} from "../api/wsEvents";
+import {successActions} from "./messageActions";
 
-export function createWebSocket(state, {
+import {WsSocket} from "../interfaces/socket";
+
+export function createWebSocket(state: WsSocket, {
     url = ApiConfig.API_URL,
     reconnect = true
 }) {
@@ -80,7 +82,8 @@ function onClose({state, reconnect, url, event}) {
     })
 }
 
-function messageAction(state, message) {
+//todo add types
+function messageAction(state: WsSocket, message: any) {
     switch (message?.type) {
         case wsEvents.LOGIN:
             return successActions.setToken(message)
@@ -99,7 +102,7 @@ function messageAction(state, message) {
     }
 }
 
-function errorAction(state, message) {
+function errorAction(state: WsSocket, message: any) {
     console.group('ERROR: ' + message?.type)
     console.log('message', message)
     console.groupEnd()

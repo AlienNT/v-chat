@@ -1,25 +1,29 @@
-export function setProperty(name, value) {
-    document.documentElement.style.setProperty(`--${name}`, value)
+import {FileBlob} from "../interfaces/fileReader";
+
+export function setProperty(name: string, value: string | boolean): void {
+    document.documentElement.style.setProperty(`--${name}`, String(value))
 }
 
-export function getInitials(string) {
+export function getInitials(string: string) {
     return string?.length ?
         string.split(' ').map(substr => substr[0]?.toUpperCase()).join(' ') :
         string
 }
 
-export function toBase64(file) {
-    return new Promise((resolve, reject) => {
+export function toBase64(file: File): Promise<FileBlob | string | ArrayBuffer> {
+    return new Promise((resolve, reject): void => {
         const reader = new FileReader();
 
         reader.readAsDataURL(file);
 
-        reader.onload = () => {
-            return resolve(reader.result);
+        reader.onload = (): void => {
+            const {result} = reader
+            return resolve(result);
         }
         reader.onerror = () => {
             return reject;
         }
+        return
     });
 }
 

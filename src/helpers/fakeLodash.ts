@@ -1,5 +1,5 @@
 export const _ = {
-    get: (object, keys, defaultVal) => {
+    get: (object: any, keys: string | string[], defaultVal: any = undefined) => {
         keys = Array.isArray(keys) ? keys : keys.split('.');
         object = object[keys[0]];
 
@@ -9,8 +9,8 @@ export const _ = {
 
         return object === undefined ? defaultVal : object;
     },
-    debounce: (func, delay = 100) => {
-        let timeout
+    debounce: (func: any, delay: number = 100) => {
+        let timeout: any
 
         return () => {
             clearTimeout(timeout)
