@@ -1,6 +1,6 @@
 <script setup>
 
-import {iconTgPath} from "@/helpers/icons.js";
+import {iconTgPath} from "@/helpers/icons.ts";
 import VIcon from "@/components/UI/icons/VIcon.vue";
 </script>
 

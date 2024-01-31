@@ -6,8 +6,8 @@ import ChatsItemMessageBody from "@/components/chats/ChatsItemMessageBody.vue";
 import {colors} from "@/router/colors.js";
 import {computed} from "vue";
 
-import {useProfile} from "@/composables/store/useProfile.js";
-import {objectFieldsToString} from "@/helpers/index.js";
+import {useProfile} from "@/composables/store/useProfile.ts";
+import {objectFieldsToString} from "@/helpers/index.ts";
 
 const props = defineProps({
   title: {

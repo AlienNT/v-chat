@@ -2,16 +2,16 @@
 import {computed, onBeforeUnmount, onMounted, watch} from "vue";
 
 import {useRouter} from "vue-router";
-import {useMessages} from "@/composables/store/useMessages.js";
-import {useMessageRequest} from "@/composables/api/useMessageRequest.js";
-import {useProfile} from "@/composables/store/useProfile.js";
-import {useDialogs} from "@/composables/store/useDialogs.js";
+import {useMessages} from "@/composables/store/useMessages.ts";
+import {useMessageRequest} from "@/composables/api/useMessageRequest.ts";
+import {useProfile} from "@/composables/store/useProfile.ts";
+import {useDialogs} from "@/composables/store/useDialogs.ts";
 
 import ChatWindowHeader from "@/components/chatWindow/ChatWindowHeader.vue";
 import ChatWindowMessages from "@/components/chatWindow/ChatWindowMessages.vue";
 import ChatWindowBottomBar from "@/components/chatWindow/ChatWindowBottomBar.vue";
 
-import {objectFieldsToString} from "@/helpers/index.js";
+import {objectFieldsToString} from "@/helpers/index.ts";
 
 const {messages} = useMessages()
 const {members} = useDialogs()

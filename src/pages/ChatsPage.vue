@@ -2,9 +2,9 @@
 import {computed, defineAsyncComponent, watch} from "vue";
 
 import {useRouter} from "vue-router";
-import {useDialogs} from "@/composables/store/useDialogs.js";
-import {useDialogsRequest} from "@/composables/api/useDialogsRequest.js";
-import {useProfile} from "@/composables/store/useProfile.js";
+import {useDialogs} from "@/composables/store/useDialogs.ts";
+import {useDialogsRequest} from "@/composables/api/useDialogsRequest.ts";
+import {useProfile} from "@/composables/store/useProfile.ts";
 
 const {getDialogs, createDialog} = useDialogsRequest()
 const router = useRouter()

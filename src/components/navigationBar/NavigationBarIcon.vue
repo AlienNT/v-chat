@@ -25,6 +25,9 @@ const IconComponent = computed(() => {
     case routerNames.PROFILE.name:
       return defineAsyncComponent(() => import('@/components/UI/icons/PersonOutline.vue'))
 
+    case routerNames.CONTACTS.name:
+      return defineAsyncComponent(() => import('@/components/UI/icons/Users.vue'))
+
     default:
       return defineAsyncComponent(() => import('@/components/UI/icons/Message.vue'))
 

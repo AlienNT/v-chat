@@ -1,5 +1,5 @@
 <script setup>
-import {useProfile} from "@/composables/store/useProfile.js";
+import {useProfile} from "@/composables/store/useProfile.ts";
 
 const {profile} = useProfile()
 

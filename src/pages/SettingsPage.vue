@@ -1,9 +1,9 @@
 <script setup>
 import VButton from "@/components/UI/VButton.vue";
-import {useAuth} from "@/composables/store/useAuth.js";
-import {useProfile} from "@/composables/store/useProfile.js";
-import {useMessages} from "@/composables/store/useMessages.js";
-import {useDialogs} from "@/composables/store/useDialogs.js";
+import {useAuth} from "@/composables/store/useAuth.ts";
+import {useProfile} from "@/composables/store/useProfile.ts";
+import {useMessages} from "@/composables/store/useMessages.ts";
+import {useDialogs} from "@/composables/store/useDialogs.ts";
 
 const {resetToken} = useAuth()
 const {resetProfile} = useProfile()

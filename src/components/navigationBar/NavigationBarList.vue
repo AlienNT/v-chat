@@ -1,7 +1,7 @@
 <script setup>
 import NavigationBarItem from "@/components/navigationBar/NavigationBarItem.vue";
 import {computed} from "vue";
-import {getStyles} from "@/helpers/index.js";
+import {getStyles} from "@/helpers/index.ts";
 
 const props = defineProps({
   navigationList: {

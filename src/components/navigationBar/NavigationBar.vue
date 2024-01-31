@@ -1,5 +1,5 @@
 <script setup>
-import {useNavigationBar} from "@/composables/useNavigationBar.js";
+import {useNavigationBar} from "@/composables/useNavigationBar.ts";
 import NavigationBarList from "@/components/navigationBar/NavigationBarList.vue";
 
 const {navigationList} = useNavigationBar()

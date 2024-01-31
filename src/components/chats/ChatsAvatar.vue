@@ -1,6 +1,6 @@
 <script setup>
 import {computed} from "vue";
-import {getInitials} from "@/helpers/index.js";
+import {getInitials} from "@/helpers/index.ts";
 import Avatar from "@/components/UI/Avatar.vue";
 
 const props = defineProps({

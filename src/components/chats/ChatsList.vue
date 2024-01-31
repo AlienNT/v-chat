@@ -4,7 +4,7 @@ import ChatsItem from "@/components/chats/ChatsItem.vue";
 
 import {computed} from "vue";
 import {useRouter} from "vue-router";
-import {useProfile} from "@/composables/store/useProfile.js";
+import {useProfile} from "@/composables/store/useProfile.ts";
 
 const props = defineProps({
   chatList: {

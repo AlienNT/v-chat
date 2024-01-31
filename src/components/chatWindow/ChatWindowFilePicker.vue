@@ -1,6 +1,6 @@
 <script setup>
 import PaperClip from "@/components/UI/icons/PaperClip.vue";
-import {useFileReader} from "@/composables/useFileReader.js";
+import {useFileReader} from "@/composables/useFileReader.ts";
 
 const emit = defineEmits([
   'onInput'

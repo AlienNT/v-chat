@@ -1,7 +1,7 @@
 <script setup>
 import ChatWindowMessage from "@/components/chatWindow/ChatWindowMessage.vue";
 import {onMounted, reactive, ref, watch} from "vue";
-import {_} from "@/helpers/fakeLodash.js";
+import {_} from "@/helpers/fakeLodash.ts";
 
 const props = defineProps({
   messages: {

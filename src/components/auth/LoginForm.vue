@@ -1,6 +1,6 @@
 <script setup>
 import {reactive} from "vue";
-import {useAuthRequest} from "@/composables/api/useAuthRequest.js";
+import {useAuthRequest} from "@/composables/api/useAuthRequest.ts";
 
 import AuthFormTemplate from "@/components/auth/AuthFormTemplate.vue";
 import VInput from "@/components/UI/VInput.vue";

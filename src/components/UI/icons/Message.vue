@@ -1,7 +1,7 @@
 <script setup>
 
 import VIcon from "@/components/UI/icons/VIcon.vue";
-import {iconTgPath} from "@/helpers/icons.js";
+import {iconTgPath} from "@/helpers/icons.ts";
 
 const props = defineProps({
   isActive: {

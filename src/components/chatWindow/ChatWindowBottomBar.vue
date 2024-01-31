@@ -1,7 +1,7 @@
 <script setup>
 import {reactive} from "vue";
-import {useMessageRequest} from "@/composables/api/useMessageRequest.js";
-import {useProfile} from "@/composables/store/useProfile.js";
+import {useMessageRequest} from "@/composables/api/useMessageRequest.ts";
+import {useProfile} from "@/composables/store/useProfile.ts";
 
 import ChatWindowInput from "@/components/chatWindow/ChatWindowInput.vue";
 import ChatWindowFilePicker from "@/components/chatWindow/ChatWindowFilePicker.vue";

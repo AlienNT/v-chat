@@ -1,17 +1,17 @@
 <script setup>
 import {computed, defineAsyncComponent, watch} from "vue";
-import {setProperty} from "@/helpers/index.js";
-import {apiRequest} from "@/helpers/request.js";
+import {setProperty} from "@/helpers/index.ts";
+import {apiRequest} from "@/helpers/request.ts";
 
 import {useRouter} from "vue-router";
-import {useAuth} from "@/composables/store/useAuth.js";
-import {useColors} from "@/composables/useColors.js";
-import {useProfileRequest} from "@/composables/api/useProfileRequest.js";
-import {useWebSocket} from "@/composables/useWebSocket.js";
-import {useProfile} from "@/composables/store/useProfile.js";
+import {useAuth} from "@/composables/store/useAuth.ts";
+import {useColors} from "@/composables/useColors.ts";
+import {useProfileRequest} from "@/composables/api/useProfileRequest.ts";
+import {useWebSocket} from "@/composables/useWebSocket.ts";
+import {useProfile} from "@/composables/store/useProfile.ts";
 
 import routerNames from "@/router/routerNames.js";
-import {wsEvents} from "@/api/wsEvents.js";
+import {wsEvents} from "@/api/wsEvents.ts";
 
 const {connected} = useWebSocket()
 const {setToken, isAuth, token} = useAuth()
