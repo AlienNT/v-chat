@@ -1,7 +1,9 @@
 import {computed, reactive} from "vue";
-import {createWebSocket} from "@/helpers/webSocket.js";
+import {createWebSocket} from "../helpers/webSocket";
 
-const state = reactive({
+import {Socket, WsSocket} from "../interfaces/socket";
+
+const state: WsSocket = reactive({
     connected: false,
     readyState: null,
     socket: null
@@ -10,33 +12,31 @@ const state = reactive({
 createWebSocket(state, {})
 
 export function useWebSocket() {
-    const webSocket = computed(() => {
+    const webSocket = computed((): Socket => {
         return state.socket
     })
 
-    function close() {
+    function close(): void {
         webSocket.value?.close()
     }
 
-    function send(message) {
+    function send(message: string): void {
         webSocket.value?.send(message)
     }
 
-    const connected = computed(() => {
+    const connected = computed((): boolean => {
         return state.connected
     })
 
-    const readyState = computed(() => {
+    const readyState = computed((): number => {
         return state.readyState
     })
 
     return {
         webSocket,
-
         close,
         send,
-
         connected,
-        readyState,
+        readyState
     }
 }
