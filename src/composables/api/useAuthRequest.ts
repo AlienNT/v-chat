@@ -1,19 +1,15 @@
-import {apiRequest} from "@/helpers/request.js";
-import {wsEvents} from "@/api/wsEvents.js";
+import {apiRequest} from "../../helpers/request";
+import {wsEvents} from "../../api/wsEvents";
 
 export function useAuthRequest() {
-    async function login(formData) {
-        console.log('login', formData)
-
+    async function login(formData: string): Promise<void> {
         apiRequest({
             type: wsEvents.LOGIN,
             body: formData,
         })
     }
 
-    async function registration(formData) {
-        console.log('registration', formData)
-
+    async function registration(formData: string): Promise<void> {
         apiRequest({
             type: wsEvents.REGISTRATION,
             body: formData
