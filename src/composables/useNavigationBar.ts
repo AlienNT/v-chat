@@ -1,17 +1,19 @@
 import {computed, reactive} from "vue";
 
-const state = reactive({
+import {Navigation, NavigationState} from "../interfaces/navigation";
+
+const state: NavigationState = reactive({
     navigationList: [
         {
-            _id: 1,
-            name: 'profile',
-            path: '/profile',
-            title: 'Профиль',
+            _id: '1',
+            name: 'contacts',
+            path: '/contacts',
+            title: 'Контакты',
             isShow: true,
             order: 1
         },
         {
-            _id: 2,
+            _id: '2',
             name: 'chats',
             path: '/chats',
             title: 'Чаты',
@@ -19,7 +21,7 @@ const state = reactive({
             order: 1
         },
         {
-            _id: 3,
+            _id: '3',
             name: 'settings',
             path: '/settings',
             title: 'Настройки',
@@ -29,8 +31,8 @@ const state = reactive({
     ]
 })
 
-export function useNavigationBar() {
-    const navigationList = computed(() => {
+export function useNavigationBar(): object {
+    const navigationList = computed((): Navigation[] => {
         return state.navigationList
     })
 
