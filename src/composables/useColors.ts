@@ -1,6 +1,8 @@
 import {computed, reactive} from "vue";
 
-const state = reactive({
+import {Color, ColorsState} from "../interfaces/colors";
+
+const state: ColorsState = reactive({
     colors: [
         {
             name: 'Colors-Dominant-BG-HContrast',
@@ -41,8 +43,8 @@ const state = reactive({
     ]
 })
 
-export function useColors() {
-    const colors = computed(() => {
+export function useColors(): object {
+    const colors = computed((): Color[] => {
         return state.colors
     })
 
