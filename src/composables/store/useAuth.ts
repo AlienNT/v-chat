@@ -1,34 +1,33 @@
 import {computed, reactive} from "vue";
 
-const state = reactive({
+import {Auth, IsAuth, Token} from "../../interfaces/auth";
+
+const state: Auth = reactive({
     token: '',
     isAuth: false,
 })
 
 export function useAuth() {
-    const token = computed(() =>
-        state.token
-    )
+    const token = computed((): Token => {
+        return state.token
+    })
 
-    function setToken({token}) {
-        console.group('setToken')
-        console.warn('token', token)
-        console.groupEnd()
-
+    function setToken({token}: Auth): Token {
         localStorage.setItem('token', token)
+
         return state.token = token
     }
 
-    const isAuth = computed(() =>
-        !!state.token
-    )
+    const isAuth = computed((): IsAuth => {
+        return !!state.token
+    })
 
-    function setIsAuth(value) {
+    function setIsAuth(value: IsAuth): IsAuth {
         return state.isAuth = value
     }
 
 
-    function resetToken() {
+    function resetToken(): void {
         localStorage.removeItem('token')
         state.token = ''
     }
@@ -37,9 +36,7 @@ export function useAuth() {
         token,
         setToken,
         resetToken,
-
         isAuth,
         setIsAuth,
-
     }
 }
