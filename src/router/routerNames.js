@@ -14,5 +14,9 @@ export default {
     PROFILE: {
         path: '/profile',
         name: 'profile'
+    },
+    CONTACTS: {
+        path: '/contacts',
+        name: 'contacts'
     }
 }
