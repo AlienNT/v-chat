@@ -1,6 +1,6 @@
 <script setup>
 import {computed} from "vue";
-import {colors} from "@/router/colors.js";
+import {colors} from "@/helpers/colors.ts";
 import {getStyles} from "@/helpers/index.ts";
 
 const props = defineProps({

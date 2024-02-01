@@ -1,6 +1,6 @@
 <script setup>
 import {computed, defineAsyncComponent} from "vue";
-import {colors} from "@/router/colors.js";
+import {colors} from "@/helpers/colors.ts";
 import routerNames from "@/router/routerNames.js";
 
 const props = defineProps({

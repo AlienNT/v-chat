@@ -3,7 +3,7 @@ import ChatsAvatar from "@/components/chats/ChatsAvatar.vue";
 import ChatsItemMessageHeader from "@/components/chats/ChatsItemMessageHeader.vue";
 import ChatsItemMessageBody from "@/components/chats/ChatsItemMessageBody.vue";
 
-import {colors} from "@/router/colors.js";
+import {colors} from "@/helpers/colors.ts";
 import {computed} from "vue";
 
 import {useProfile} from "@/composables/store/useProfile.ts";

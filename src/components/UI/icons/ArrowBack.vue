@@ -2,7 +2,7 @@
 
 import VIcon from "@/components/UI/icons/VIcon.vue";
 import {iconTgPath} from "@/helpers/icons.ts";
-import {colors} from "@/router/colors.js";
+import {colors} from "@/helpers/colors.ts";
 </script>
 
 <template>
