@@ -1,8 +1,8 @@
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
-import {fileURLToPath, URL} from "node:url";
 // @ts-ignore
 import autoprefixer from "autoprefixer";
+import * as path from "node:path";
 export default defineConfig({
     plugins: [vue()],
     css: {
@@ -17,8 +17,7 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            // @ts-ignore
-            '@': fileURLToPath(new URL('./src', import.meta.url))
+            '@': path.resolve(__dirname, './src')
         }
     },
 })
