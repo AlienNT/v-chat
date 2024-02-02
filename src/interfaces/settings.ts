@@ -5,5 +5,5 @@ export interface Settings extends Default {
 }
 
 export interface SettingsState {
-    settings: Settings
+    settings: Settings | null
 }
