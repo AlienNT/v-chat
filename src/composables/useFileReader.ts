@@ -1,7 +1,7 @@
 import {computed, reactive} from "vue";
-import {toBase64} from "../helpers";
+import {toBase64} from "@/helpers";
 
-import {FileBlob, FileReaderState} from "../interfaces/fileReader";
+import {FileBlob, FileReaderState, FileToBlob} from "@/interfaces/fileReader";
 
 export function useFileReader(): object {
     const state: FileReaderState = reactive({
@@ -20,7 +20,7 @@ export function useFileReader(): object {
         return state.files = []
     }
 
-    function fileToBase(file: File): Promise<string | ArrayBuffer | FileBlob> {
+    function fileToBase(file: File): Promise<FileToBlob> {
         return toBase64(file)
     }
 
