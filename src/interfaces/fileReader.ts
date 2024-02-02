@@ -1,3 +1,4 @@
+export type FileToBlob = string | null | ArrayBuffer
 export interface FileBlob {
     name?: string
     size?: number
