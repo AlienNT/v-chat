@@ -1,7 +1,7 @@
 export interface WsSocket {
     connected?: boolean
-    readyState: number
-    socket?: Socket
+    readyState: number | null
+    socket?: Socket | null
 }
 
 export interface Socket extends WebSocket{
