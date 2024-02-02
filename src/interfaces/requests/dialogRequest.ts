@@ -2,7 +2,7 @@ import {Id} from "../index";
 import {DefaultRequest} from "./apiRequest";
 
 export interface GetDialogs extends DefaultRequest {
-    userId?: string
+    userId?: string | null
 }
 
 export interface CreateDialog extends DefaultRequest {
@@ -10,10 +10,12 @@ export interface CreateDialog extends DefaultRequest {
 }
 
 export interface UpdateDialog extends DefaultRequest {
+    _id: Id
     body: any
 }
 
 export interface DeleteDialog extends DefaultRequest {
+    _id: Id
     userId: Id
     forAll: boolean
 }

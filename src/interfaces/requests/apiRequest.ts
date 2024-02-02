@@ -1,6 +1,4 @@
-import {Default} from "../index";
-
-export interface DefaultRequest extends Default {
+export interface DefaultRequest{
     type: string
 }
 

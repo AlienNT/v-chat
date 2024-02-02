@@ -17,6 +17,7 @@ export interface UpdateMessage extends DefaultRequest {
 }
 
 export interface DeleteMessage extends DefaultRequest {
+    _id: Id
     userId: Id
     forAll: boolean
 }
