@@ -1,14 +1,14 @@
 import {computed, reactive} from "vue";
 
-import {Id} from "../../interfaces";
-import {Profile, ProfileState} from "../../interfaces/profile";
+import {Id} from "@/interfaces";
+import {Profile, ProfileState} from "@/interfaces/profile";
 
 const state: ProfileState = reactive({
     profile: null
 })
 
 export function useProfile() {
-    const profile = computed((): Profile => {
+    const profile = computed((): Profile | null => {
         return state.profile
     })
 
@@ -20,8 +20,8 @@ export function useProfile() {
         state.profile = null
     }
 
-    const userId = computed((): Id => {
-        return state.profile?._id
+    const userId = computed((): Id | null => {
+        return state.profile?._id || null
     })
     return {
         profile,

@@ -5,5 +5,5 @@ export interface Profile extends User {
 }
 
 export interface ProfileState {
-    profile: Profile
+    profile: Profile | null
 }
