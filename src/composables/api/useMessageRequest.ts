@@ -1,7 +1,7 @@
-import {apiRequest} from "../../helpers/request";
-import {wsEvents} from "../../api/wsEvents";
+import {apiRequest} from "@/helpers/request";
+import {wsEvents} from "@/api/wsEvents";
 
-import {AddMessage, DeleteMessage, GetMessage, UpdateMessage} from "../../interfaces/requests/messageRequest";
+import {AddMessage, DeleteMessage, GetMessage, UpdateMessage} from "@/interfaces/requests/messageRequest";
 
 export function useMessageRequest() {
     function getMessages({dialogId, userId}: GetMessage): void {

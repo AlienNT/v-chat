@@ -1,7 +1,7 @@
-import {apiRequest} from "../../helpers/request";
-import {wsEvents} from "../../api/wsEvents";
+import {apiRequest} from "@/helpers/request";
+import {wsEvents} from "@/api/wsEvents";
 
-import {CreateDialog, DeleteDialog, GetDialogs, UpdateDialog} from "../../interfaces/requests/dialogRequest";
+import {CreateDialog, DeleteDialog, GetDialogs, UpdateDialog} from "@/interfaces/requests/dialogRequest";
 
 export function useDialogsRequest() {
     function getDialogs({userId}: GetDialogs): void {
