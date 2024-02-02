@@ -1,7 +1,7 @@
 import {computed, reactive} from "vue";
-import {createWebSocket} from "../helpers/webSocket";
+import {createWebSocket} from "@/helpers/webSocket";
 
-import {Socket, WsSocket} from "../interfaces/socket";
+import {Socket, WsSocket} from "@/interfaces/socket";
 
 const state: WsSocket = reactive({
     connected: false,
@@ -12,8 +12,8 @@ const state: WsSocket = reactive({
 createWebSocket(state, {})
 
 export function useWebSocket() {
-    const webSocket = computed((): Socket => {
-        return state.socket
+    const webSocket = computed((): Socket | null => {
+        return state.socket || null
     })
 
     function close(): void {
@@ -25,10 +25,10 @@ export function useWebSocket() {
     }
 
     const connected = computed((): boolean => {
-        return state.connected
+        return !!state.connected
     })
 
-    const readyState = computed((): number => {
+    const readyState = computed((): number | null => {
         return state.readyState
     })
 
