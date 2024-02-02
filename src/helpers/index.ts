@@ -1,4 +1,4 @@
-import {FileBlob} from "../interfaces/fileReader";
+import {FileToBlob} from "@/interfaces/fileReader";
 
 export function setProperty(name: string, value: string | boolean): void {
     document.documentElement.style.setProperty(`--${name}`, String(value))
@@ -10,7 +10,7 @@ export function getInitials(string: string) {
         string
 }
 
-export function toBase64(file: File): Promise<FileBlob | string | ArrayBuffer> {
+export function toBase64(file: File): Promise<FileToBlob> {
     return new Promise((resolve, reject): void => {
         const reader = new FileReader();
 
