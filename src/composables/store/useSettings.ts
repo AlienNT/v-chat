@@ -1,13 +1,13 @@
 import {computed, reactive} from "vue";
 
-import {Settings, SettingsState} from "../../interfaces/settings";
+import {Settings, SettingsState} from "@/interfaces/settings";
 
 const state: SettingsState = reactive({
     settings: null
 })
 
 export function useSettings(): object {
-    const settings = computed((): Settings => {
+    const settings = computed((): Settings | null => {
         return state.settings
     })
 

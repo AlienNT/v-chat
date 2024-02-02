@@ -1,21 +1,21 @@
 import {computed, reactive} from "vue";
 
-import {Auth, IsAuth, Token} from "../../interfaces/auth";
+import {Auth, IsAuth, Token} from "@/interfaces/auth";
 
 const state: Auth = reactive({
-    token: '',
+    token: null,
     isAuth: false,
 })
 
 export function useAuth() {
-    const token = computed((): Token => {
+    const token = computed((): Token | null => {
         return state.token
     })
 
-    function setToken({token}: Auth): Token {
-        localStorage.setItem('token', token)
+    function setToken({token}: Auth): void {
+        token && localStorage.setItem('token', token)
 
-        return state.token = token
+        state.token = token
     }
 
     const isAuth = computed((): IsAuth => {
@@ -29,7 +29,7 @@ export function useAuth() {
 
     function resetToken(): void {
         localStorage.removeItem('token')
-        state.token = ''
+        state.token = null
     }
 
     return {

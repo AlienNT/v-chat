@@ -1,8 +1,8 @@
 import {computed, reactive} from "vue";
 
-import {Dialog, DialogState} from "../../interfaces/dialog";
-import {Id} from "../../interfaces";
-import {User} from "../../interfaces/user";
+import {Dialog, DialogState} from "@/interfaces/dialog";
+import {Id} from "@/interfaces";
+import {User} from "@/interfaces/user";
 
 const state: DialogState = reactive({
     dialogs: [],
@@ -13,11 +13,11 @@ export function useDialogs() {
         return state.dialogs
     })
 
-    const dialog = (_id: Id) => computed((): Dialog => {
+    const dialog = (_id: Id) => computed((): Dialog | undefined => {
         return state.dialogs.find((dialog: Dialog) => dialog._id === _id)
     })
 
-    const members = (dialogId: Id) => computed((): User[] => {
+    const members = (dialogId: Id) => computed((): User[] | undefined => {
         return dialog(dialogId).value?.members
     })
 
