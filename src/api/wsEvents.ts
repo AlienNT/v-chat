@@ -14,6 +14,8 @@ export const wsEvents = {
     GET_PROFILE: 'getProfile',
     UPDATE_PROFILE: 'updateProfile',
     GET_SETTINGS: 'getSettings',
-    UPDATE_SETTINGS: 'updateSettings'
+    UPDATE_SETTINGS: 'updateSettings',
+    GET_CONTACTS: 'getContacts',
+    ADD_CONTACT: 'addContact'
 
 }
